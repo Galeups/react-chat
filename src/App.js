@@ -1,6 +1,12 @@
 import React from "react";
 import "./App.scss";
-import { Redirect, Route, Router, Switch, useLocation } from "react-router-dom";
+import {
+  Redirect,
+  BrowserRouter,
+  Route,
+  Switch,
+  useLocation,
+} from "react-router-dom";
 
 import AddRoom from "./components/AddRoom/AddRoom";
 import Login from "./components/Login/Login";
@@ -29,7 +35,7 @@ function App() {
   );
 
   return (
-    <Router>
+    <BrowserRouter>
       <div>
         <Redirect
           to={{
@@ -46,15 +52,17 @@ function App() {
           <SecureRoute path="/roomlist">
             <RoomList />
           </SecureRoute>
+
           <SecureRoute path="/addroom">
             <AddRoom />
           </SecureRoute>
+
           <SecureRoute path="/chatroom/:room">
             <ChatRoom />
           </SecureRoute>
         </Switch>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 
