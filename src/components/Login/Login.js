@@ -25,7 +25,7 @@ const Login = () => {
     setCreds({ ...creds, [e.target.name]: e.target.value });
   };
 
-  const login = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     setShowLoading(true);
 
@@ -50,7 +50,7 @@ const Login = () => {
       {showLoading && <Spinner color="primary" />}
 
       <Jumbotron>
-        <Form onSubmit={login}>
+        <Form onSubmit={onSubmit}>
           <FormGroup>
             <Label>Nick name</Label>
             <Input
