@@ -8,5 +8,5 @@ export const firebaseConfig = {
     projectId: 'The project ID of your application',
     apiKey: 'The API key of your application',
     databaseURL: 'The databaseURL of your application'
-}
+};
 ```

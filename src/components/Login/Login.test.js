@@ -3,13 +3,13 @@ import { shallow } from 'enzyme';
 import Login from './Login';
 
 describe('<Login />', () => {
-  let component;
+    let component;
 
-  beforeEach(() => {
-    component = shallow(<Login />);
-  });
+    beforeEach(() => {
+        component = shallow(<Login />);
+    });
 
-  test('It should mount', () => {
-    expect(component.length).toBe(1);
-  });
+    test('It should mount', () => {
+        expect(component.length).toBe(1);
+    });
 });

@@ -3,13 +3,13 @@ import { shallow } from 'enzyme';
 import ChatRoom from './ChatRoom';
 
 describe('<ChatRoom />', () => {
-  let component;
+    let component;
 
-  beforeEach(() => {
-    component = shallow(<ChatRoom />);
-  });
+    beforeEach(() => {
+        component = shallow(<ChatRoom />);
+    });
 
-  test('It should mount', () => {
-    expect(component.length).toBe(1);
-  });
+    test('It should mount', () => {
+        expect(component.length).toBe(1);
+    });
 });
