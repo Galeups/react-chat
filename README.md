@@ -1,6 +1,6 @@
 # Step #5: Implementing Login
 
-You must create a file with name 'env.local.js'.
+You must create a file with name 'src/env.local.js'.
 This file is config of FireBase
 
 ```javascript

@@ -1,5 +1,5 @@
 import * as firebase from 'firebase';
-import { firebaseConfig } from './env.local';
+import { firebaseConfig } from './env.local.js';
 
 const config = {
     projectId: firebaseConfig.projectId,
