@@ -11,18 +11,20 @@ const RoomList = () => {
     const [showLoading, setShowLoading] = useState(true);
     const [nickName, setNickName] = useState('');
     const history = useHistory();
-    const rooms = firebase.database().ref('rooms/');
     const chats = firebase.database().ref('chats/');
     const roomusers = firebase.database().ref('roomusers/');
 
     useEffect(() => {
         const fetchData = async () => {
             setNickName(localStorage.getItem('nickName'));
-            rooms.on('value', (resp) => {
-                setRoom([]);
-                setRoom(snapshotToArray(resp));
-                setShowLoading(false);
-            });
+            firebase
+                .database()
+                .ref('rooms/')
+                .on('value', (resp) => {
+                    setRoom([]);
+                    setRoom(snapshotToArray(resp));
+                    setShowLoading(false);
+                });
         };
 
         fetchData().then();
@@ -32,8 +34,6 @@ const RoomList = () => {
         const returnArr = [];
 
         snapshot.forEach((childSnap) => {
-            console.log(childSnap);
-
             const item = childSnap.val();
             item.key = childSnap.key;
             returnArr.push(item);
@@ -85,7 +85,7 @@ const RoomList = () => {
     };
 
     return (
-        <div>
+        <div className={styles.roomList}>
             {showLoading && <Spinner color="primary" />}
             <Jumbotron>
                 <h3>
