@@ -14,13 +14,13 @@ function App() {
         <Route
             {...rest}
             render={({ location }) =>
-                localStorage.getItem('nickname') ? (
+                localStorage.getItem('nickName') ? (
                     children
                 ) : (
                     <Redirect
                         to={{
                             pathname: '/login',
-                            state: { from: location }
+                            state: { from: location },
                         }}
                     />
                 )
@@ -33,8 +33,8 @@ function App() {
             <div>
                 <Redirect
                     to={{
-                        pathname: 'roomlist',
-                        state: { from: location }
+                        pathname: '/roomlist',
+                        state: { from: location },
                     }}
                 />
 
