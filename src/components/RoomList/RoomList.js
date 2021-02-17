@@ -26,7 +26,7 @@ const RoomList = () => {
         };
 
         fetchData().then();
-    });
+    }, []);
 
     const snapshotToArray = (snapshot) => {
         const returnArr = [];
@@ -63,7 +63,7 @@ const RoomList = () => {
 
                 if (user !== undefined) {
                     const userRef = firebase.database().ref(`roomusers${user.key}`);
-                    userRef.update({ status: 'online' });
+                    userRef.update({ status: 'online' }).then();
                 } else {
                     const newroomuser = {
                         roomName,
@@ -79,12 +79,47 @@ const RoomList = () => {
             });
     };
 
-    const logOut = () => {
+    const logout = () => {
         localStorage.removeItem('nickName');
         history.push('/login');
     };
 
-    return <div className={styles.RoomList}>RoomList Component</div>;
+    return (
+        <div>
+            {showLoading && <Spinner color="primary" />}
+            <Jumbotron>
+                <h3>
+                    {nickName}{' '}
+                    <Button
+                        onClick={() => {
+                            logout();
+                        }}
+                    >
+                        Logout
+                    </Button>
+                </h3>
+
+                <h2>Room list</h2>
+                <div>
+                    <Link to="/addroom">Add room</Link>
+                </div>
+
+                <ListGroup>
+                    {room.map((item, idx) => (
+                        <ListGroupItem
+                            key={idx}
+                            action
+                            onClick={() => {
+                                enterChatRoom(item.roomName);
+                            }}
+                        >
+                            {item.roomName}
+                        </ListGroupItem>
+                    ))}
+                </ListGroup>
+            </Jumbotron>
+        </div>
+    );
 };
 
 RoomList.propTypes = {};

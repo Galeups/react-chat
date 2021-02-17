@@ -25,15 +25,18 @@ const Login = () => {
             .equalTo(creds.nickName)
             .once('value', (snapshot) => {
                 if (snapshot.exists()) {
-                    localStorage.setItem('nickName', creds.nickName);
-                } else {
-                    const newUser = firebase.database().ref('users/').push();
-                    newUser.set(creds);
-                    localStorage.setItem('nickName', creds.nickName);
-                    history.push('users/');
                     setShowLoading(false);
+                    localStorage.setItem('nickName', creds.nickName);
+                    history.push('/roomlist');
+                } else {
+                    setShowLoading(false);
+                    const newUser = firebase.database().ref('users/').push();
+                    newUser.set(creds).then();
+                    localStorage.setItem('nickName', creds.nickName);
+                    history.push('/roomlist');
                 }
-            });
+            })
+            .then();
     };
 
     return (
