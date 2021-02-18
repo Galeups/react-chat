@@ -104,7 +104,7 @@ const RoomList = () => {
 
                 <h2>Room list</h2>
                 <div>
-                    <Link to="/addroom">Add room</Link>
+                    <Link to="/add-room">Add room</Link>
                 </div>
 
                 <ListGroup>

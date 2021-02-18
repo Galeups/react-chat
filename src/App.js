@@ -33,7 +33,7 @@ function App() {
             <div>
                 <Redirect
                     to={{
-                        pathname: '/roomlist',
+                        pathname: '/room-list',
                         state: { from: location },
                     }}
                 />
@@ -43,11 +43,11 @@ function App() {
                         <Login />
                     </Route>
 
-                    <SecureRoute path="/roomlist">
+                    <SecureRoute path="/room-list">
                         <RoomList />
                     </SecureRoute>
 
-                    <SecureRoute path="/addroom">
+                    <SecureRoute path="/add-room">
                         <AddRoom />
                     </SecureRoute>
 
