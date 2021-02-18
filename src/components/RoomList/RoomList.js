@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { Jumbotron, Spinner, ListGroup, ListGroupItem, Button } from 'reactstrap';
+import { Button, Jumbotron, ListGroup, ListGroupItem, Spinner } from 'reactstrap';
 import Moment from 'moment';
 import firebase from '../../Firebase';
 
@@ -12,22 +12,25 @@ const RoomList = () => {
     const [nickName, setNickName] = useState('');
     const history = useHistory();
     const chats = firebase.database().ref('chats/');
-    const roomusers = firebase.database().ref('roomusers/');
+    const roomUsers = firebase.database().ref('roomUsers/');
 
     useEffect(() => {
-        const fetchData = async () => {
-            setNickName(localStorage.getItem('nickName'));
-            firebase
-                .database()
-                .ref('rooms/')
-                .on('value', (resp) => {
+        let destroy = false;
+        setNickName(localStorage.getItem('nickName'));
+        firebase
+            .database()
+            .ref('rooms/')
+            .on('value', (resp) => {
+                if (!destroy) {
                     setRoom([]);
                     setRoom(snapshotToArray(resp));
                     setShowLoading(false);
-                });
-        };
+                }
+            });
 
-        fetchData().then();
+        return () => {
+            destroy = true;
+        };
     }, []);
 
     const snapshotToArray = (snapshot) => {
@@ -54,15 +57,15 @@ const RoomList = () => {
         const newMessage = chats.push(chat);
         newMessage.set(chat).then();
 
-        roomusers
-            .orderByChild('roomname')
+        roomUsers
+            .orderByChild('roomName')
             .equalTo(roomName)
             .on('value', (resp) => {
                 let roomUser = snapshotToArray(resp);
                 const user = roomUser.find((x) => x.nickName === nickName);
 
                 if (user !== undefined) {
-                    const userRef = firebase.database().ref(`roomusers${user.key}`);
+                    const userRef = firebase.database().ref(`roomUsers${user.key}`);
                     userRef.update({ status: 'online' }).then();
                 } else {
                     const newroomuser = {
@@ -71,7 +74,7 @@ const RoomList = () => {
                         status: 'online',
                     };
 
-                    const newRoomUser = roomusers.push();
+                    const newRoomUser = roomUsers.push();
                     newRoomUser.set(newroomuser).then();
 
                     history.push(`/chatroom'${roomName}`);
@@ -101,7 +104,7 @@ const RoomList = () => {
 
                 <h2>Room list</h2>
                 <div>
-                    <Link to="/addroom">Add room</Link>
+                    <Link to="/add-room">Add room</Link>
                 </div>
 
                 <ListGroup>

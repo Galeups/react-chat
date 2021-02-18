@@ -27,13 +27,13 @@ const Login = () => {
                 if (snapshot.exists()) {
                     setShowLoading(false);
                     localStorage.setItem('nickName', creds.nickName);
-                    history.push('/roomlist');
+                    history.push('/room-list');
                 } else {
                     setShowLoading(false);
                     const newUser = firebase.database().ref('users/').push();
                     newUser.set(creds).then();
                     localStorage.setItem('nickName', creds.nickName);
-                    history.push('/roomlist');
+                    history.push('/room-list');
                 }
             })
             .then();
