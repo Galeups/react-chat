@@ -76,9 +76,9 @@ const RoomList = () => {
 
                     const newRoomUser = roomUsers.push();
                     newRoomUser.set(newroomuser).then();
-
-                    history.push(`/chatroom'${roomName}`);
                 }
+
+                history.push(`/chatroom/${roomName}`);
             });
     };
 
