@@ -88,7 +88,7 @@ const RoomList = () => {
     };
 
     return (
-        <div className={styles.roomList}>
+        <div className={styles.RoomList}>
             {showLoading && <Spinner color="primary" />}
             <Jumbotron>
                 <h3>

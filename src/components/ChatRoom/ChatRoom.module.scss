@@ -5,6 +5,7 @@
 
 .UsersCard {
   margin: 5px 20px;
+  min-width: 170px;
 }
 
 footer.StickyFooter {
@@ -123,6 +124,5 @@ footer.StickyFooter {
 }
 
 .ChatContent {
-  overflow-y: scroll;
   height: 600px;
 }
