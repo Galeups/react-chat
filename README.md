@@ -1,4 +1,4 @@
-# Step #5: Implementing Login
+# React chat
 
 You must create a file with name 'src/env.local.js'.
 This file is config of FireBase

@@ -25,19 +25,22 @@ const Login = () => {
             .equalTo(creds.nickName)
             .once('value', (snapshot) => {
                 if (snapshot.exists()) {
-                    localStorage.setItem('nickName', creds.nickName);
-                } else {
-                    const newUser = firebase.database().ref('users/').push();
-                    newUser.set(creds);
-                    localStorage.setItem('nickName', creds.nickName);
-                    history.push('users/');
                     setShowLoading(false);
+                    localStorage.setItem('nickName', creds.nickName);
+                    history.push('/room-list');
+                } else {
+                    setShowLoading(false);
+                    const newUser = firebase.database().ref('users/').push();
+                    newUser.set(creds).then();
+                    localStorage.setItem('nickName', creds.nickName);
+                    history.push('/room-list');
                 }
-            });
+            })
+            .then();
     };
 
     return (
-        <div className={styles.login}>
+        <div className={styles.Login}>
             {showLoading && <Spinner color="primary" />}
 
             <Jumbotron>
