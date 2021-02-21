@@ -42,7 +42,7 @@ const AddRoom = () => {
     };
 
     return (
-        <div className={styles.addRoom}>
+        <div className={styles.AddRoom}>
             {showLoading && <Spinner color="primary" />}
             <Jumbotron>
                 <h2>Please enter new Room</h2>

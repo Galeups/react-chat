@@ -129,27 +129,27 @@ function ChatRoom(props) {
                     </Col>
 
                     <Col xs="8">
-                        <ScrollToBottom className="ChatContent">
+                        <ScrollToBottom className={styles.ChatContent}>
                             {chats.map((item, idx) => (
-                                <div key={idx} className="MessageBox">
+                                <div key={idx} className={styles.MessageBox}>
                                     {item.type === 'join' || item.type === 'exit' ? (
-                                        <div className="ChatStatus">
-                                            <span className="ChatDate">{item.date}</span>
-                                            <span className="ChatContentCenter">{item.message}</span>
+                                        <div className={styles.ChatStatus}>
+                                            <span className={styles.ChatDate}>{item.date}</span>
+                                            <span className={styles.ChatContentCenter}>{item.message}</span>
                                         </div>
                                     ) : (
-                                        <div className="ChatMessage">
+                                        <div className={styles.ChatMessage}>
                                             <div
                                                 className={`${
-                                                    item.nickName === nickName ? 'RightBubble' : 'LeftBubble'
+                                                    item.nickName === nickName ? styles.RightBubble : styles.LeftBubble
                                                 }`}
                                             >
                                                 {item.nickName === nickName ? (
-                                                    <span className="MsgName">Me</span>
+                                                    <span className={styles.MsgName}>Me</span>
                                                 ) : (
-                                                    <span className="MsgName">{item.nickName}</span>
+                                                    <span className={styles.MsgName}>{item.nickName}</span>
                                                 )}
-                                                <span className="MsgDate"> at {item.date}</span>
+                                                <span className={styles.MsgDate}> at {item.date}</span>
                                                 <p>{item.message}</p>
                                             </div>
                                         </div>
@@ -157,8 +157,8 @@ function ChatRoom(props) {
                                 </div>
                             ))}
                         </ScrollToBottom>
-                        <footer className="StickyFooter">
-                            <Form className="MessageForm" onSubmit={submitMessage}>
+                        <footer className={styles.StickyFooter}>
+                            <Form className={styles.MessageForm} onSubmit={submitMessage}>
                                 <InputGroup>
                                     <Input
                                         type="text"

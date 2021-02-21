@@ -40,7 +40,7 @@ const Login = () => {
     };
 
     return (
-        <div className={styles.login}>
+        <div className={styles.Login}>
             {showLoading && <Spinner color="primary" />}
 
             <Jumbotron>
