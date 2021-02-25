@@ -9,7 +9,7 @@ describe('<RoomList />', () => {
         component = shallow(<RoomList />);
     });
 
-    test('It should mount', () => {
+    it('It should mount', () => {
         expect(component.length).toBe(1);
     });
 });

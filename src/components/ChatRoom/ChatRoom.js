@@ -1,25 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import {
-    Container,
-    Row,
-    Col,
-    Card,
-    CardBody,
-    CardSubtitle,
-    Button,
-    Form,
-    InputGroup,
-    Input,
-    InputGroupAddon,
-} from 'reactstrap';
+import { Button, Card, CardBody, CardSubtitle, Col, Container, Row } from 'reactstrap';
 import Moment from 'moment';
 import firebase from '../../Firebase';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
 import styles from './ChatRoom.module.scss';
+import FormSendMessage from '../FormSendMessage/FormSendMessage';
 
-function ChatRoom(props) {
+function ChatRoom() {
     const [chats, setChats] = useState([]);
     const [users, setUsers] = useState([]);
     const [nickName, setNickName] = useState('');
@@ -81,6 +70,7 @@ function ChatRoom(props) {
     };
 
     const onChange = (e) => {
+        console.log(e.target.value);
         e.persist();
         setNewChat({ ...newChat, [e.target.name]: e.target.value });
     };
@@ -158,23 +148,11 @@ function ChatRoom(props) {
                             ))}
                         </ScrollToBottom>
                         <footer className={styles.StickyFooter}>
-                            <Form className={styles.MessageForm} onSubmit={submitMessage}>
-                                <InputGroup>
-                                    <Input
-                                        type="text"
-                                        name="message"
-                                        id="message"
-                                        placeholder="Enter message here"
-                                        value={newChat.message}
-                                        onChange={onChange}
-                                    />
-                                    <InputGroupAddon addonType="append">
-                                        <Button variant="primary" type="submit">
-                                            Send
-                                        </Button>
-                                    </InputGroupAddon>
-                                </InputGroup>
-                            </Form>
+                            <FormSendMessage
+                                submitMessage={submitMessage}
+                                onChange={onChange}
+                                message={newChat.message}
+                            />
                         </footer>
                     </Col>
                 </Row>

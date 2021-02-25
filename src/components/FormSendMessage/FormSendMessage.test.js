@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import AddRoom from './AddRoom';
+import FormSendMessage from './FormSendMessage';
 
-describe('<AddRoom />', () => {
+describe('<Login />', () => {
     let component;
 
     beforeEach(() => {
-        component = shallow(<AddRoom />);
+        component = shallow(<FormSendMessage />);
     });
 
     it('It should mount', () => {
